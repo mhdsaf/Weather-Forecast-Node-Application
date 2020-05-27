@@ -97,7 +97,7 @@ const getWeather = (latitude,longitude,loc,res) => {
                 msg: "Unable to fetch weather. Check your internet connection"
             }
         }else if(response.body.success==false){
-            //console.log(chalk.red("Unable to find location. Try another search"));
+            
             obj = {
                 status: false,
                 msg: "Unable to find location. Try another search"
