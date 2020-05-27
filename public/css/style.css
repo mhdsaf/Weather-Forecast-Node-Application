@@ -1,0 +1,77 @@
+.well {
+    background-color: rgba(46, 43, 43, 0.9);
+ }
+ .div1{
+    width: 50%;
+    height: 50%;
+    background-image: url("../img/home1.jpg");
+    width: 50%;
+    height: 50%;
+ }
+ .grey{
+     color: green;
+ }
+
+ .parent {
+    width: 100%; 
+    height: auto;
+  }
+  
+  .child {
+    width: 100%;
+    height: 100%;
+    background-color: black; /* fallback color */
+    background-image: url("../img/home1.jpg");
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../img/home1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  @media(max-width: 576px){
+      .del{
+          display: none;
+      }
+  }
+  @media(min-width: 577px){
+    .del{
+        display: block;
+    }
+}
+.btn-primary:hover {
+    color: white;
+    border-color: #285e8e; /*set the color you want here*/
+}
+
+nav .navbar-nav li a:hover{
+    color: white !important;
+}
+.jumb{
+    background-color: #282727;
+    height: auto;
+}
+.jumb1{
+    background-color: #0275d8;
+    height: auto;
+}
+.expimg{
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 991px){
+    .expimg{
+        margin-left: 10%;
+        width: 80%;
+        height: 85%;
+    }
+}
+.cBtn{
+    color: white;
+}
+.cBtn:hover{
+    background-color: white !important;
+    color:#0275d8;
+}
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 0rem
+}
