@@ -3,7 +3,9 @@ const express = require('express')
 const hbs = require('hbs')
 const request = require('request')
 var obj;
+
 const app = express()
+const port = process.env.PORT || 3000
 //define paths for Express Configuration (static, views, partials)
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsDirectoryPath = path.join(__dirname,'../templates/views');
@@ -58,8 +60,8 @@ app.get('*',(req,res)=>{
         errorMessage: "404, page not found"
     });
 });
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`)
 })
 
 const getGeoCode = (location,callback,res) => {

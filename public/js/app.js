@@ -1,7 +1,7 @@
 $(document).ready(function(){
     const getData = (userInput) => {
         let obj;
-        fetch(`http://localhost:3000/weather?address=${userInput}`).then((response)=>{
+        fetch(`/weather?address=${userInput}`).then((response)=>{
             console.log("fetching");
         response.json().then((data)=>{
             if(data.status==false){
