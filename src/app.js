@@ -104,8 +104,10 @@ const getWeather = (latitude,longitude,loc,res) => {
             }
         }
         else{
-            const {weather_descriptions, temperature, feelslike, weather_icons, pressure, precip, wind_speed, wind_degree, humidity, uv_index, visibility} = response.body.current;
-            console.log(response.body);
+            const {weather_descriptions, temperature, feelslike, weather_icons, pressure, precip, wind_speed, wind_degree,observation_time, humidity, uv_index, visibility} = response.body.current;
+            const {localtime} = response.body.location;
+            console.log(localtime);
+            //console.log(response.body);
             //console.log(chalk.blue(`Weather forecast in ${loc} is ${weather_descriptions[0]}. Currently ${temperature} degrees celcius, feels like ${feelslike} degrees celcius.`));
             obj = {
                 status: true,
@@ -122,10 +124,11 @@ const getWeather = (latitude,longitude,loc,res) => {
                 humidity: humidity,
                 index: uv_index,
                 visibility: visibility,
-                precip: precip
+                precip: precip,
+                time: observation_time,
+                localtime: localtime
             }
         }
-        //console.log(obj);
         res.send(obj);
     });
 }
