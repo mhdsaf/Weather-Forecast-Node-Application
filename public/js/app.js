@@ -2,7 +2,7 @@ $(document).ready(function(){
     const getData = (userInput) => {
         let obj;
         fetch(`/weather?address=${userInput}`).then((response)=>{
-            console.log("fetching");
+            console.log("fetching " + userInput);
         response.json().then((data)=>{
             if(data.status==false){
             }else{
@@ -23,7 +23,34 @@ $(document).ready(function(){
         $('html, body').animate({
             scrollTop: $("#explore").offset().top
         }, 1000);
-    }
+    };
+    $("#submit").click(function (e) { 
+        e.preventDefault();
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position)=>{
+                let obj = {
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude
+                }
+                console.log(obj);
+                fetch('/weather1',{
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+                }).then((response)=>{
+                    response.json().then((data)=>{
+                        console.log(data);
+                        printToScreen(data);
+                    })
+                });
+            })
+        }else{
+            alert("Browser doesn't support geolocation");
+        }
+    });
     $("#submit1").click((e)=>{
         
         //alert('click');

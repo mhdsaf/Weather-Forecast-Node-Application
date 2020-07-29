@@ -16,7 +16,7 @@ app.set('views',viewsDirectoryPath);
 hbs.registerPartials(partialsDirectoryPath);
 // Setup static directory
 app.use(express.static(publicDirectoryPath))
-
+app.use(express.json());
 app.get('',(req,res)=>{
     res.render('index',{
         name: "Mohamed Safieddine",
@@ -40,15 +40,19 @@ app.get('/about',(req,res)=>{
     });
 });
 app.get('/weather', (req, res) => {
-    if (req.query.address) {
+    if (req.query.address) { //if we tried accessing this end point without having address in the query string
+        // .query returns an object that contains the query in the URL
         getGeoCode(req.query.address,getWeather,res);
     } else {
         res.send({
             error: "You must provide an address"
         })
     }
+});
+app.post('/weather1', (req,res)=>{
+    console.log(req.body);
+    getWeather(req.body.lat, req.body.long, 'getWeather',res);
 })
-
 app.get('/help/*',(req,res)=>{
     res.render('errorPage',{
         errorMessage: "Help document not found"
@@ -89,6 +93,7 @@ const getGeoCode = (location,callback,res) => {
 }
 
 const getWeather = (latitude,longitude,loc,res) => {
+    console.log('loc ' + loc);
     let url = (`http://api.weatherstack.com/current?access_key=cd3a15ad1eee388b410fe778dab262ed&query=${latitude},${longitude}`);
     request({url:url, json:true},(error, response) => {
         if(error){
